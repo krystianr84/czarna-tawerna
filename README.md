@@ -222,6 +222,11 @@ specs/czarna-tawerna/     specyfikacja SDD: requirements.md, design.md, tasks.md
 sprawozdanie/             generator sprawozdania DOCX, narzędzia do zrzutów, zasoby (diagram, zrzuty)
 .streamlit/config.toml    ustawienia Streamlit dla kiosku
 .devcontainer/            konfiguracja GitHub Codespaces
+.github/                  szablony zgłoszeń (Issues) i pull requestów
+CONTRIBUTING.md           zasady współpracy w zespole
+CODE_OF_CONDUCT.md        kodeks postępowania
+SECURITY.md               zgłaszanie problemów z bezpieczeństwem
+LICENSE                   prawa autorskie (wszelkie prawa zastrzeżone)
 requirements.txt          biblioteki aplikacji
 pyproject.toml            metadane projektu i konfiguracja pytest
 setup.cfg                 konfiguracja pycodestyle (PEP 8)
@@ -250,19 +255,13 @@ Najpierw zmieniamy specyfikację, potem kod.
 
 ## Współpraca
 
-**Konwencje kodu**
+Zasady pracy w zespole - konwencje kodu, Spec-Driven Development, testy, praca z gałęziami i pull requestami - opisuje **[CONTRIBUTING.md](CONTRIBUTING.md)**. W skrócie:
 
-- Nazwy klas, metod i funkcji są po angielsku (wymóg etapu 2, PEP 8), np. `Cart`, `load_menu`.
-- Wszystko inne - nazwy pakietów i plików, atrybuty, zmienne, klucze JSON, nazwy testów, komentarze, docstringi i teksty interfejsu - jest po polsku, bez polskich znaków w identyfikatorach (np. `pozycje`, `cena_bazowa`).
-- Kwoty są w groszach (`int`); błędy logiki zgłasza się jako `ValueError` (niedozwolona operacja) lub `KeyError` (brak id).
-- Logika w `czarna_tawerna` nie importuje Streamlita.
+- nazwy klas, metod i funkcji po angielsku, wszystko inne po polsku;
+- najpierw specyfikacja, potem kod;
+- przed wysłaniem zmian: `git pull`, `pytest` i `pycodestyle czarna_tawerna app.py tests` bez błędów.
 
-**Praca z repozytorium**
-
-1. Przed rozpoczęciem pracy pobierz zmiany: `git pull`.
-2. Nowa funkcja: najpierw specyfikacja w `specs/czarna-tawerna/`, potem kod; wykonane zadanie odhacz w `tasks.md`.
-3. Przed wysłaniem zmian sprawdź, że przechodzą testy (`pytest`) i styl (`pycodestyle czarna_tawerna app.py tests`).
-4. Commit z krótkim opisem po polsku, co i po co zmieniono, potem `git push`. Jeśli push zostanie odrzucony, bo ktoś wysłał zmiany wcześniej: `git pull --rebase`, a potem ponownie `git push`.
+Błędy i zadania zgłaszamy w zakładce **Issues** (szablony „Błąd” i „Zadanie”), a pull requesty mają gotową listę kontrolną. Zasady komunikacji: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), zgłaszanie problemów z bezpieczeństwem: [SECURITY.md](SECURITY.md).
 
 ## Sprawozdanie i oddawanie
 
@@ -288,7 +287,7 @@ Od etapu 2 oddaje się archiwum ZIP z kodem i sprawozdaniem - **bez** `.venv/`, 
 
 ## Licencja i prawa
 
-Projekt edukacyjny, przygotowany na zajęcia z Programowania obiektowego II w AHE w Łodzi. **Wszelkie prawa zastrzeżone** przez autorów - kod nie jest udostępniony na wolnej licencji.
+Projekt edukacyjny, przygotowany na zajęcia z Programowania obiektowego II w AHE w Łodzi. **Wszelkie prawa zastrzeżone** przez autorów - kod nie jest udostępniony na wolnej licencji (zob. [LICENSE](LICENSE)).
 
 Treści osób trzecich:
 

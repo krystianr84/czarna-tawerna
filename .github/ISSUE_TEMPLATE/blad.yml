@@ -1,0 +1,50 @@
+name: Błąd
+description: Coś działa inaczej, niż powinno
+title: "[Błąd] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Opisz błąd tak, żeby ktoś inny mógł go odtworzyć.
+  - type: textarea
+    id: opis
+    attributes:
+      label: Co się dzieje
+      description: Co zobaczyłeś(-aś), np. komunikat błędu albo zły wynik.
+    validations:
+      required: true
+  - type: textarea
+    id: kroki
+    attributes:
+      label: Kroki do odtworzenia
+      placeholder: |
+        1. Otwórz zakładkę „Kawy z ładowni”
+        2. Dodaj 2 × Latte Bosmana
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: oczekiwane
+    attributes:
+      label: Co powinno się stać
+    validations:
+      required: true
+  - type: dropdown
+    id: obszar
+    attributes:
+      label: Obszar
+      options:
+        - menu (menu/, dane/menu.json)
+        - koszyk (zamowienia/)
+        - interfejs kiosku (app.py, interfejs/)
+        - testy
+        - dokumentacja / sprawozdanie
+        - inne
+    validations:
+      required: true
+  - type: input
+    id: srodowisko
+    attributes:
+      label: Środowisko
+      description: System, wersja Pythona i Streamlita (`python --version`, `pip show streamlit`).
+      placeholder: Windows 11, Python 3.12, Streamlit 1.66

@@ -1,0 +1,20 @@
+Copyright (c) 2026 Krystian Rutkowski, Katarzyna Pater, Dariusz Lorenz, Wiktor Purgał
+
+Wszelkie prawa zastrzeżone.
+
+Czarna Tawerna to projekt edukacyjny przygotowany na zajęcia z przedmiotu
+Programowanie obiektowe II w Akademii Humanistyczno-Ekonomicznej w Łodzi.
+Kod nie jest udostępniony na wolnej licencji: bez pisemnej zgody autorów
+nie wolno go kopiować, rozpowszechniać ani wykorzystywać w innych pracach,
+w szczególności zaliczeniowych. Wgląd w kod do celów oceny projektu mają
+prowadzący zajęcia oraz osoby zaproszone do repozytorium.
+
+Treści osób trzecich zawarte w projekcie:
+
+- motto w README.md - fragment tekstu utworu „Czarna tawerna” zespołu
+  Leniwiec, przytoczony jako cytat; prawa należą do autorów utworu;
+- logo tawerny, grafiki produktów i obrazek załogi (dane/zdjecia/) -
+  wygenerowane modelem AI Nano Banana (Google Gemini), opis pochodzenia
+  w dane/zdjecia/ZRODLA.md; postacie na crew.png są inspirowane grą
+  Among Us (Innersloth);
+- biblioteki Streamlit, pytest i fpdf2 - na własnych licencjach open source.

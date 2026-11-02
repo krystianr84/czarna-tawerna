@@ -1,0 +1,47 @@
+name: Zadanie
+description: Nowa funkcja lub praca do wykonania (zgodnie z Spec-Driven Development)
+title: "[Zadanie] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Nowa funkcja zaczyna się od specyfikacji: wymaganie w `requirements.md` → projekt w `design.md` → zadanie w `tasks.md` → kod i testy. Zob. [CONTRIBUTING.md](https://github.com/krystianr84/czarna-tawerna/blob/main/CONTRIBUTING.md).
+  - type: textarea
+    id: opis
+    attributes:
+      label: Co trzeba zrobić
+      description: Krótko, z punktu widzenia klienta kiosku albo zespołu.
+    validations:
+      required: true
+  - type: input
+    id: wymagania
+    attributes:
+      label: Wymagania
+      description: Numery wymagań z `specs/czarna-tawerna/requirements.md`, np. W4, W9.5, N6. Jeśli wymagania jeszcze nie ma - napisz „do dopisania”.
+    validations:
+      required: true
+  - type: dropdown
+    id: etap
+    attributes:
+      label: Etap projektu
+      options:
+        - etap 2 - menu i koszyk
+        - etap 3
+        - etap 4
+    validations:
+      required: true
+  - type: input
+    id: osoba
+    attributes:
+      label: Osoba odpowiedzialna
+      placeholder: np. Katarzyna Pater (zamówienia)
+  - type: textarea
+    id: kryteria
+    attributes:
+      label: Kiedy uznajemy zadanie za zrobione
+      value: |
+        - [ ] specyfikacja zaktualizowana (requirements / design / tasks)
+        - [ ] kod i testy
+        - [ ] `pytest` i `pycodestyle czarna_tawerna app.py tests` bez błędów
+        - [ ] zadanie odhaczone w `tasks.md`
