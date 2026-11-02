@@ -1,0 +1,24 @@
+# środowisko i pliki tymczasowe - nie trafiają do ZIP-a oddawanego na platformę
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.streamlit/secrets.toml
+
+# pliki blokady Worda i LibreOffice
+~$*
+.~lock.*#
+
+# ustawienia IDE
+.idea/
+.vscode/
+
+# poza repozytorium GitHub (decyzja 2026-11-02): oddane PDF-y etapu 1 z numerami albumów,
+# instrukcje prowadzącego, gotowe pliki sprawozdania i notatki robocze zespołu
+sprawozdanie/etap1_pdf/
+req/
+sprawozdanie/*.docx
+sprawozdanie/*.pdf
+dane_projektu.md
+CLAUDE.md

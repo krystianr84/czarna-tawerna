@@ -1,0 +1,55 @@
+classDiagram
+    class MenuItem {
+        <<abstract>>
+        id, nazwa, opis
+        cena: int
+        kategoria_id, oznaczenia
+        kind()* str
+        price() int
+    }
+    MenuItem <|-- Drink
+    MenuItem <|-- Dish
+    class Drink {
+        kind() str
+    }
+    class Dish {
+        kind() str
+    }
+    class Category {
+        id, nazwa
+        pozycje: list
+    }
+    class Menu {
+        kategorie: list
+        all_items() list
+        item(id_pozycji) MenuItem
+    }
+    Menu o-- Category
+    Category o-- MenuItem
+    class MenuItemFactory {
+        register(typ, konstruktor)
+        create(dane, kategoria_id) MenuItem
+    }
+    MenuItemFactory ..> MenuItem : tworzy
+    class CartItem {
+        pozycja: MenuItem
+        ilosc: int
+        value() int
+    }
+    class Cart {
+        pozycje: list
+        add(pozycja, ilosc) CartItem
+        remove(wpis)
+        clear()
+        total() int
+        is_empty() bool
+    }
+    Cart o-- CartItem
+    CartItem --> MenuItem
+    class Tavern {
+        menu: Menu
+        koszyk: Cart
+        add_to_cart(id_pozycji, ilosc) CartItem
+    }
+    Tavern --> Menu
+    Tavern --> Cart

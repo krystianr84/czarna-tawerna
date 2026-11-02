@@ -1,0 +1,6 @@
+# Ustawienia Streamlit dla kiosku: bez przycisku „Deploy” i menu dewelopera.
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false

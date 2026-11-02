@@ -1,0 +1,9 @@
+[project]
+name = "czarna-tawerna"
+version = "0.1.0"
+description = "System zamówień w pirackiej tawernie - projekt z Programowania obiektowego II"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

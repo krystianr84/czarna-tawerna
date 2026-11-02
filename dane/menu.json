@@ -1,0 +1,59 @@
+{
+  "kategorie": [
+    {
+      "id": "kawy",
+      "nazwa": "Kawy z ładowni",
+      "pozycje": [
+        {"id": "espresso_kapitana", "typ": "napoj", "nazwa": "Espresso Kapitana", "opis": "mocne espresso", "cena": 9},
+        {"id": "americano_rozbitka", "typ": "napoj", "nazwa": "Americano Rozbitka", "opis": "espresso z gorącą wodą", "cena": 11},
+        {"id": "cappuccino_nawigatora", "typ": "napoj", "nazwa": "Cappuccino Nawigatora", "opis": "espresso, mleczna pianka, kakao", "cena": 14},
+        {"id": "latte_bosmana", "typ": "napoj", "nazwa": "Latte Bosmana", "opis": "espresso z dużą ilością mleka", "cena": 15},
+        {"id": "flat_white_abordazu", "typ": "napoj", "nazwa": "Flat White Abordażu", "opis": "podwójne espresso z mlekiem", "cena": 15},
+        {"id": "mokka_czarnej_bandery", "typ": "napoj", "nazwa": "Mokka Czarnej Bandery", "opis": "espresso, czekolada, mleko", "cena": 17},
+        {"id": "latte_rajskiej_wyspy", "typ": "napoj", "nazwa": "Latte Rajskiej Wyspy", "opis": "espresso z mlekiem kokosowym", "cena": 17, "oznaczenia": ["wege"]}
+      ]
+    },
+    {
+      "id": "tortuga",
+      "nazwa": "Napoje z Tortugi",
+      "pozycje": [
+        {"id": "grog_bosmana", "typ": "napoj", "nazwa": "Grog Bosmana", "opis": "korzenna herbata z pomarańczą", "cena": 14},
+        {"id": "zielona_mgla", "typ": "napoj", "nazwa": "Zielona Mgła", "opis": "matcha latte", "cena": 17},
+        {"id": "zloty_dublon", "typ": "napoj", "nazwa": "Złoty Dublon", "opis": "golden latte z kurkumą", "cena": 16},
+        {"id": "czekolada_korsarza", "typ": "napoj", "nazwa": "Czekolada Korsarza", "opis": "gorąca czekolada", "cena": 15},
+        {"id": "herbata_indii", "typ": "napoj", "nazwa": "Herbata z Indii Wschodnich", "opis": "zielona herbata jaśminowa", "cena": 10, "oznaczenia": ["wege"]}
+      ]
+    },
+    {
+      "id": "zimne",
+      "nazwa": "Zimne trunki",
+      "pozycje": [
+        {"id": "cold_brew_z_glebin", "typ": "napoj", "nazwa": "Cold Brew z Głębin", "opis": "kawa parzona na zimno", "cena": 16, "oznaczenia": ["wege"]},
+        {"id": "lemoniada_syreny", "typ": "napoj", "nazwa": "Lemoniada Syreny", "opis": "niebieska lemoniada", "cena": 13, "oznaczenia": ["wege"]},
+        {"id": "frappe_krakena", "typ": "napoj", "nazwa": "Frappe Krakena", "opis": "mrożona kawa z karmelem i chili", "cena": 18, "oznaczenia": ["ostre"]},
+        {"id": "poncz_karaibski", "typ": "napoj", "nazwa": "Poncz Karaibski", "opis": "ananas, mango, marakuja, limonka", "cena": 15, "oznaczenia": ["wege"]}
+      ]
+    },
+    {
+      "id": "prowiant",
+      "nazwa": "Prowiant z kambuza",
+      "pozycje": [
+        {"id": "tost_kartografa", "typ": "danie", "nazwa": "Tost Kartografa", "opis": "tost z awokado i jajkiem", "cena": 19},
+        {"id": "bajgiel_przemytnika", "typ": "danie", "nazwa": "Bajgiel Przemytnika", "opis": "bajgiel z łososiem i serkiem", "cena": 21},
+        {"id": "wrap_bukaniera", "typ": "danie", "nazwa": "Wrap Bukaniera", "opis": "wrap z kurczakiem", "cena": 23, "oznaczenia": ["ostre"]},
+        {"id": "owsianka_majtka", "typ": "danie", "nazwa": "Owsianka Majtka", "opis": "owsianka z mango i kokosem", "cena": 16, "oznaczenia": ["wege"]},
+        {"id": "rogalik_sternika", "typ": "danie", "nazwa": "Rogalik Sternika", "opis": "maślany croissant", "cena": 11}
+      ]
+    },
+    {
+      "id": "skarby",
+      "nazwa": "Skarby z kufra",
+      "pozycje": [
+        {"id": "skrzynia_skarbow", "typ": "danie", "nazwa": "Skrzynia Skarbów", "opis": "brownie z orzechami", "cena": 14},
+        {"id": "sernik_gubernatora", "typ": "danie", "nazwa": "Sernik Gubernatora", "opis": "sernik baskijski", "cena": 15},
+        {"id": "cynamonowy_kompas", "typ": "danie", "nazwa": "Cynamonowy Kompas", "opis": "bułka cynamonowa", "cena": 12},
+        {"id": "banan_rozbitka", "typ": "danie", "nazwa": "Banan Rozbitka", "opis": "karmelizowany banan", "cena": 13, "oznaczenia": ["wege"]}
+      ]
+    }
+  ]
+}
