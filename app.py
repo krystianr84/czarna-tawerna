@@ -13,6 +13,17 @@ from czarna_tawerna.pieniadze import format_pln
 PLIK_MENU = Path(__file__).parent / "dane" / "menu.json"
 KATALOG_ZDJEC = Path(__file__).parent / "dane" / "zdjecia"
 LOGO = KATALOG_ZDJEC / "Czrna_tawerna_logo1.jpg"  # baner tawerny na górze kiosku
+LOGO_OKRAGLE = KATALOG_ZDJEC / "Czrna_tawerna_logo2.jpg"  # „O twórcach”
+OBRAZEK_ZALOGI = KATALOG_ZDJEC / "crew.png"  # na dole zakładki „O twórcach”
+
+# zakładka „O twórcach”: (imię i nazwisko, piracka rola, obszar);
+# bez numerów albumów - kiosk widzą klienci
+ZALOGA = [
+    ("Krystian Rutkowski", "Szyper", "kierownik projektu, interfejs kiosku i integracja"),
+    ("Katarzyna Pater", "Kwatermistrz", "koszyk i zamówienia"),
+    ("Dariusz Lorenz", "Kuk", "personalizacja produktów, diagram klas"),
+    ("Wiktor Purgał", "Nawigator", "menu i fabryka pozycji"),
+]
 
 
 def photo_path(id_pozycji: str) -> Path:
@@ -37,7 +48,8 @@ st.caption('<span style="font-size: 250%">'
 # --- menu -------------------------------------------------------------
 SZEROKOSC_KAFELKA = 310  # px; kafelki zawijają się do kolejnych rzędów
 
-zakladki = st.tabs([k.nazwa for k in tawerna.menu.kategorie])
+*zakladki, zakladka_tworcy = st.tabs([k.nazwa for k in tawerna.menu.kategorie]
+                                     + ["O twórcach"])
 for zakladka, kategoria in zip(zakladki, tawerna.menu.kategorie):
     with zakladka, st.container(horizontal=True):
         for pozycja in kategoria.pozycje:
@@ -58,6 +70,26 @@ for zakladka, kategoria in zip(zakladki, tawerna.menu.kategorie):
                 if st.button(etykieta, key=f"b_{pozycja.id}", width="stretch"):
                     tawerna.add_to_cart(pozycja.id, ilosc)
                     st.rerun()
+
+# --- o twórcach -------------------------------------------------------
+with zakladka_tworcy:
+    with st.container(horizontal=True, vertical_alignment="center", gap="large"):
+        st.image(LOGO_OKRAGLE, width=300, alt="Logo Czarnej Tawerny")
+        with st.container():
+            st.subheader("Załoga Czarnej Tawerny")
+            st.write("Kiosk zamówień pirackiej tawerny-kawiarni to projekt semestralny "
+                     "z przedmiotu **Programowanie obiektowe II** - Akademia "
+                     "Humanistyczno-Ekonomiczna w Łodzi, Informatyka, rok akademicki "
+                     "2026/2027.")
+            st.caption("Logo, grafiki produktów i obrazek załogi wygenerowano modelem AI "
+                       "Nano Banana (Google Gemini).")
+    for kolumna, (imie, rola_piracka, obszar) in zip(st.columns(len(ZALOGA)), ZALOGA):
+        with kolumna.container(border=True, height="stretch"):
+            st.markdown(f"**{imie}**")
+            st.markdown(f"🏴‍☠️ {rola_piracka}")
+            st.caption(obszar)
+    with st.container(horizontal_alignment="center"):
+        st.image(OBRAZEK_ZALOGI, width=560, alt="Załoga dziękuje za uwagę")
 
 # --- koszyk -----------------------------------------------------------
 with st.sidebar:

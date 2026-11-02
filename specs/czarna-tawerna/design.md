@@ -127,6 +127,7 @@ Model klas z sekcji wyżej - obejmuje całą logikę etapu 2. Diagram renderowan
 - `app.py` tylko wyświetla dane i wywołuje metody `Tavern` i `Cart`; nie liczy cen ani nie sprawdza reguł (wartość pozycji i koszyka liczą `CartItem.value()` i `Cart.total()`).
 - `Tavern` trzymana jest w `st.session_state`, żeby koszyk przetrwał przeładowania Streamlita (W9.2).
 - Menu to kafelki w zakładkach kategorii (zdjęcie, nazwa, opis, cena, ilość, przycisk „Do koszyka”). Zdjęcie dobiera `app.py` po `id` pozycji (`dane/zdjecia/<id>.jpg`, w razie braku `brak.jpg`) - to sprawa prezentacji, więc model `MenuItem` nie ma pola ze zdjęciem (W9.5, W9.6).
+- Zakładka „O twórcach” to ostatnia zakładka `st.tabs`; dane zespołu są stałą w `app.py` (to treść prezentacji, nie logika, więc nie trafiają do pakietu `czarna_tawerna`) (W9.7).
 - Błędy logiki to wyjątki (`ValueError`, `KeyError`); interfejs nie dopuszcza do błędnych akcji (pole ilości przyjmuje tylko 1-20, usuwanie dotyczy pozycji widocznej w koszyku).
 
 ### Decyzje projektowe (2.4)

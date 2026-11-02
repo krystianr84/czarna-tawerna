@@ -128,7 +128,7 @@ Czarna Tawerna to tawerna-kawiarnia w klimacie pirackim. System działa jak kios
 2. `[Ubiquitous]` System POWINIEN umieszczać na paragonie numer zamówienia, produkty z rozmiarami i dodatkami, ilości, ceny, sumę, rabat z opisem promocji i kwotę do zapłaty.
 3. `[Ubiquitous]` System POWINIEN poprawnie wyświetlać polskie znaki na paragonie.
 
-### W9. Interfejs kiosku (rola 4 - Szyper) (etap 2: W9.1-9.3 w zakresie menu i koszyka, W9.5-9.6; W9.4 - poczekalnia)
+### W9. Interfejs kiosku (rola 4 - Szyper) (etap 2: W9.1-9.3 w zakresie menu i koszyka, W9.5-9.7; W9.4 - poczekalnia)
 
 **Historyjka:** Jako klient chcę obsługiwać kiosk w przeglądarce bez instrukcji.
 
@@ -138,6 +138,7 @@ Czarna Tawerna to tawerna-kawiarnia w klimacie pirackim. System działa jak kios
 4. `[Ubiquitous]` System POWINIEN udostępniać panel obsługi do zmiany statusu i anulowania zamówień. Na razie panel jest w tym samym widoku co kiosk, w osobnej sekcji (instrukcja etapu 2 tego nie rozstrzyga; decyzja zespołu - zadanie 7.4a).
 5. `[Ubiquitous]` System POWINIEN pokazywać menu jako kafelki z grafiką poglądową pozycji; grafika to plik `dane/zdjecia/<id>.jpg`, a jej pochodzenie (generowanie AI) jest opisane w `dane/zdjecia/ZRODLA.md` i w sprawozdaniu (etap 2).
 6. `[Unwanted]` JEŚLI dla pozycji nie ma pliku zdjęcia, TO system POWINIEN pokazać grafikę zastępczą `dane/zdjecia/brak.jpg` (dodanie pozycji nadal wymaga tylko zmiany `dane/menu.json`, W1.7).
+7. `[Ubiquitous]` System POWINIEN mieć zakładkę „O twórcach” (ostatnią, za kategoriami menu) z krótkim opisem projektu i kartami członków zespołu: imię i nazwisko, piracka rola, obszar w projekcie, a na dole obrazek załogi `dane/zdjecia/crew.png`; bez numerów albumów, bo kiosk widzą klienci (etap 2).
 
 ## Wymagania niefunkcjonalne
 
