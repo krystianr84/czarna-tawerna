@@ -569,9 +569,9 @@ def rozdzial_2(doc):
                 "grafik opisuje też plik `ZRODLA.md` w katalogu z grafikami.")
     rysunek(doc, "zrzut_kiosk_menu_koszyk.png", 17.0,
             "Rys. 2.2. Kiosk Czarnej Tawerny - menu i koszyk")
-    akapit(doc, "Rysunek 2.3 przedstawia wynik testów jednostkowych. Projekt ma 22 testy w trzech plikach: "
+    akapit(doc, "Rysunek 2.3 przedstawia wynik testów jednostkowych. Projekt ma 12 testów w trzech plikach: "
                 "`test_menu.py` (menu i fabryka), `test_zamowienia.py` (koszyk i dokładność kwot) oraz "
-                "`test_tawerna.py` (stan sesji kiosku). Sześć z nich sprawdza przypadki błędne, a każdy test "
+                "`test_tawerna.py` (stan sesji kiosku). Cztery z nich sprawdzają przypadki błędne, a każdy test "
                 "porównuje konkretny wynik z oczekiwanym. Wszystkie testy przechodzą.")
     rysunek(doc, "zrzut_pytest.png", 17.0, "Rys. 2.3. Wynik testów jednostkowych (pytest -v)")
 

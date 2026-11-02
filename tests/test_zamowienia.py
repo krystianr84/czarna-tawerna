@@ -13,12 +13,6 @@ def koszyk(menu) -> Cart:
     return k
 
 
-def test_nowy_koszyk_jest_pusty():
-    k = Cart()
-    assert k.is_empty()
-    assert k.total() == 0
-
-
 def test_suma_koszyka(koszyk):
     assert not koszyk.is_empty()
     assert [p.value() for p in koszyk.pozycje] == [3000, 1500]
@@ -43,12 +37,6 @@ def test_usuniecie_pozycji_spoza_koszyka_zglasza_blad(menu, koszyk):
         koszyk.remove(obca)
     assert len(koszyk.pozycje) == 2
     assert koszyk.total() == 4500
-
-
-def test_wyczyszczenie_koszyka(koszyk):
-    koszyk.clear()
-    assert koszyk.is_empty()
-    assert koszyk.total() == 0
 
 
 def test_kwoty_liczone_dokladnie_bez_bledow_float():

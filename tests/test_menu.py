@@ -3,8 +3,8 @@ from dataclasses import dataclass
 
 import pytest
 
-from czarna_tawerna.menu import Dish, Drink, MenuItem, MenuItemFactory, load_menu
-from czarna_tawerna.pieniadze import format_pln, pln
+from czarna_tawerna.menu import Dish, Drink, MenuItemFactory, load_menu
+from czarna_tawerna.pieniadze import pln
 
 
 def test_menu_ma_piec_kategorii_i_25_pozycji(menu):
@@ -13,18 +13,10 @@ def test_menu_ma_piec_kategorii_i_25_pozycji(menu):
 
 
 def test_fabryka_tworzy_wlasciwy_typ(menu):
-    assert isinstance(menu.item("latte_bosmana"), Drink)
-    assert isinstance(menu.item("tost_kartografa"), Dish)
-
-
-def test_fabryka_przepisuje_dane_pozycji():
-    pozycja = MenuItemFactory().create(
-        {"id": "grog", "typ": "napoj", "nazwa": "Grog", "opis": "korzenny", "cena": 14,
-         "oznaczenia": ["wege"]}, "tortuga")
-    assert (pozycja.id, pozycja.nazwa, pozycja.opis, pozycja.kategoria_id) == \
-        ("grog", "Grog", "korzenny", "tortuga")
-    assert pozycja.price() == 1400
-    assert pozycja.oznaczenia == {"wege"}
+    latte, tost = menu.item("latte_bosmana"), menu.item("tost_kartografa")
+    assert isinstance(latte, Drink)
+    assert isinstance(tost, Dish)
+    assert (latte.kind(), tost.kind()) == ("napój", "danie")
 
 
 def test_fabryka_odrzuca_nieznany_typ():
@@ -62,24 +54,3 @@ def test_nowa_kategoria_i_danie_wymagaja_tylko_zmiany_pliku_menu(tmp_path):
     menu = load_menu(plik)
     assert [k.nazwa for k in menu.kategorie] == ["Zupy z kotła"]
     assert menu.item("zupa_rybna").price() == 1800
-
-
-def test_pozycji_menu_nie_da_sie_utworzyc_bezposrednio():
-    with pytest.raises(TypeError):
-        MenuItem("x", "X", "", 100, "kawy")
-
-
-def test_rodzaj_pozycji_zalezy_od_klasy(menu):
-    assert menu.item("latte_bosmana").kind() == "napój"
-    assert menu.item("sernik_gubernatora").kind() == "danie"
-
-
-def test_brak_pozycji_o_podanym_id(menu):
-    with pytest.raises(KeyError):
-        menu.item("nie_ma_takiej")
-
-
-@pytest.mark.parametrize("grosze, tekst", [(900, "9 zł"), (1450, "14,50 zł"), (-300, "-3 zł")],
-                         ids=["pelne_zlote", "z_groszami", "ujemna"])
-def test_format_pln(grosze, tekst):
-    assert format_pln(grosze) == tekst

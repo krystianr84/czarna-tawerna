@@ -84,6 +84,7 @@ Instrukcja: `req/etap2.md`. Funkcje etapu (menu, koszyk, fabryka, oddzielenie lo
 
 - [x] 8.12 Aktualizacja `design.md`, `README.md` i `CLAUDE.md` po zmianie nazw (diagramy, nazwy klas, status etapu) - Krystian Rutkowski - _N9, N10_
 - [x] 8.12a README: instrukcja instalacji, konfiguracji i uruchomienia dla Windows, Linuksa i macOS; `requirements.txt`: `streamlit>=1.65` (starsze wersje nie mają `alt` w `st.image`); sprawdzone na Pythonie 3.10, 3.11 i 3.14 (Windows) - Krystian Rutkowski - _N1, N9_
+- [x] 8.12b Ograniczenie testów do 12 (4 przypadki błędne) - zostają testy fabryki, koszyka i `Tavern` wymagane instrukcją etapu 2; usunięte zdublowane i drobne; odświeżony `zrzut_pytest.png` i tekst punktu 2.5 - Krystian Rutkowski - _N6_
 - [ ] 8.13 Poprawki w rozdziale 1 wg uwag prowadzącego do etapu 1 - Krystian Rutkowski - _N11_
 
 ### Sprawozdanie - rozdział 2 „Menu i koszyk”

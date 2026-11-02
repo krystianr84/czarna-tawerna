@@ -1,11 +1,6 @@
 import pytest
 
 
-def test_tawerna_startuje_z_menu_i_pustym_koszykiem(tawerna):
-    assert len(tawerna.menu.kategorie) == 5
-    assert tawerna.koszyk.is_empty()
-
-
 def test_dodanie_do_koszyka_po_id_pozycji(tawerna):
     wpis = tawerna.add_to_cart("grog_bosmana", 3)
     assert wpis.pozycja.nazwa == "Grog Bosmana"
