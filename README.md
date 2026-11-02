@@ -1,21 +1,45 @@
 # 🏴‍☠️ Czarna Tawerna
 
+> *W czarnej tawernie nad urwiskiem stromej śmierci*<br>
+> *Gdzie pirackie włóczęgi, lichwiarze, mordercy*<br>
+> *Każdy kotwicę wbił w drewniany ołtarz baru*<br>
+> *Brzęczą łańcuchy zardzewiałego koszmaru*
+>
+> \- Leniwiec, „Czarna tawerna”
+
 System zamówień w pirackiej tawernie - projekt semestralny z przedmiotu **Programowanie obiektowe II** (Akademia Humanistyczno-Ekonomiczna w Łodzi, Informatyka, rok akademicki 2026/2027).
 
-Aplikacja działa jak kiosk samoobsługowy. Na etapie 2 klient przegląda menu podzielone na kategorie, dodaje pozycje do koszyka, usuwa je i widzi wartość koszyka. W kolejnych etapach dojdą m.in. rozmiary („Szalupa / Bryg / Galeon”), dodatki („łupy”), promocje i składanie zamówienia ze śledzeniem statusu.
+Aplikacja działa jak kiosk samoobsługowy w tawernie-kawiarni: klient przegląda menu, dodaje pozycje do koszyka i widzi jego wartość. W kolejnych etapach dojdą m.in. rozmiary („Szalupa / Bryg / Galeon”), dodatki („łupy”), promocje i składanie zamówienia ze śledzeniem statusu.
 
-> **Status:** etap 2 - menu i koszyk.
+> **Status:** etap 2 z 4 - menu i koszyk.
 
-Nazwy klas, metod i funkcji są po angielsku (PEP 8), a pozostałe nazwy, komentarze i teksty interfejsu - po polsku.
+![Kiosk Czarnej Tawerny - menu w kafelkach i koszyk](sprawozdanie/zasoby/zrzut_kiosk_menu_koszyk.png)
 
-## Załoga
+## Spis treści
 
-| Osoba | Nr albumu | Rola | Zakres | Wzorce |
-|---|---|---|---|---|
-| Krystian Rutkowski (Szyper) | 167040 | kierownik, interfejs i integracja | `interfejs/`, `app.py` | Observer |
-| Katarzyna Pater (Kwatermistrz) | 167683 | zamówienia | `zamowienia/` | Strategy, Observer |
-| Dariusz Lorenz (Kuk) | 167014 | personalizacja (od kolejnego etapu; w etapie 2 - diagram klas) | `personalizacja/` (w poczekalni) | Decorator |
-| Wiktor Purgał (Nawigator) | 165328 | menu | `menu/` | Fabryka |
+- [Funkcje](#funkcje)
+- [Technologia](#technologia)
+- [Instalacja i uruchomienie](#instalacja-i-uruchomienie)
+- [Testy](#testy)
+- [Konfiguracja](#konfiguracja)
+- [Najczęstsze problemy](#najczęstsze-problemy)
+- [Struktura projektu](#struktura-projektu)
+- [Wzorce projektowe](#wzorce-projektowe)
+- [Specyfikacja (Spec-Driven Development)](#specyfikacja-spec-driven-development)
+- [Współpraca](#współpraca)
+- [Sprawozdanie i oddawanie](#sprawozdanie-i-oddawanie)
+- [Autorzy](#autorzy)
+- [Licencja i prawa](#licencja-i-prawa)
+
+## Funkcje
+
+- Menu w zakładkach kategorii (5 kategorii, 25 pozycji) wczytywane z pliku `dane/menu.json`.
+- Każda pozycja jako kafelek: grafika, nazwa, opis, rodzaj (napój / danie), oznaczenia (np. „wege”), cena.
+- Dodawanie do koszyka z wyborem ilości (1-20) - przycisk od razu pokazuje kwotę.
+- Koszyk w panelu bocznym: wpisy z wartością, usuwanie pozycji, suma koszyka.
+- Kwoty liczone dokładnie w groszach i wyświetlane w formacie „14,50 zł”.
+- Koszyk przetrwa przeładowania strony w ramach jednej sesji przeglądarki.
+- Zakładka „O twórcach” z opisem projektu i kartami zespołu.
 
 ## Technologia
 
@@ -29,6 +53,8 @@ Wszystkie biblioteki są w `requirements.txt` i instalują się jednym polecenie
 ## Instalacja i uruchomienie
 
 Instrukcja ma cztery kroki: (1) zainstaluj Pythona i Gita, (2) pobierz projekt, (3) utwórz środowisko i zainstaluj biblioteki, (4) uruchom aplikację. Kroki 1, 3 i 4 różnią się między systemami - wybierz swój. Wszystkie polecenia wpisuje się w terminalu (Windows: **PowerShell**, Linux i macOS: **Terminal**).
+
+Bez instalacji czegokolwiek projekt można też uruchomić w przeglądarce - zob. [GitHub Codespaces](#bez-instalacji-github-codespaces).
 
 ### 1. Python i Git
 
@@ -126,22 +152,37 @@ Bez aktywacji środowiska:
 - Windows: `.\uruchom.ps1` - skrypt korzysta z Pythona w `.venv` i działa z dowolnego folderu (dodatkowe argumenty przekazuje do Streamlita, np. `.\uruchom.ps1 --server.port 8502`),
 - Linux i macOS: `.venv/bin/python -m streamlit run app.py`.
 
-### Testy
+### Bez instalacji: GitHub Codespaces
+
+Repozytorium ma konfigurację środowiska deweloperskiego (`.devcontainer/devcontainer.json`, Python 3.11), więc projekt można uruchomić w przeglądarce, bez instalowania Pythona i Gita:
+
+1. Na stronie repozytorium wybierz **Code → Codespaces → Create codespace on main**.
+2. Codespaces sam zainstaluje biblioteki z `requirements.txt` i uruchomi `streamlit run app.py`.
+3. Kiosk otworzy się w podglądzie (port 8501, karta **Ports** pokazuje adres do otwarcia w nowej karcie).
+
+Codespaces dla prywatnych repozytoriów korzysta z darmowego limitu godzin konta GitHub osoby, która go uruchamia; nieużywany codespace warto zatrzymać lub usunąć (**Code → Codespaces**).
+
+## Testy
+
+Przy aktywnym środowisku `.venv`:
 
 ```bash
-pytest                              # wszystkie testy
+pytest                              # wszystkie testy (12)
 pytest tests/test_zamowienia.py     # jeden plik
 pytest -k test_suma_koszyka         # jeden test
+pytest -v                           # lista testów z wynikami
 ```
 
-Sprawdzenie stylu PEP 8 (narzędzie spoza `requirements.txt`, konfiguracja w `setup.cfg`):
+Testy są w `tests/`, po jednym pliku na pakiet: `test_menu.py` (menu i fabryka), `test_zamowienia.py` (koszyk i dokładność kwot), `test_tawerna.py` (stan sesji kiosku). Korzystają z prawdziwego `dane/menu.json`, więc zmiana menu może zmienić ich wyniki.
+
+Sprawdzenie stylu PEP 8 (narzędzie spoza `requirements.txt`, konfiguracja w `setup.cfg`: linie do 99 znaków, komentarze i docstringi do 72):
 
 ```bash
 pip install pycodestyle
 pycodestyle czarna_tawerna app.py tests
 ```
 
-### Konfiguracja
+## Konfiguracja
 
 Aplikacja nie wymaga kluczy, haseł ani bazy danych - działa od razu po instalacji.
 
@@ -150,7 +191,7 @@ Aplikacja nie wymaga kluczy, haseł ani bazy danych - działa od razu po instala
 - `dane/zdjecia/<id>.jpg` - grafika pozycji o danym `id` z menu; pozycja bez grafiki dostaje `brak.jpg`.
 - Inny port niż 8501: `streamlit run app.py --server.port 8502`.
 
-### Najczęstsze problemy
+## Najczęstsze problemy
 
 | Problem | Rozwiązanie |
 |---|---|
@@ -165,23 +206,29 @@ Aplikacja nie wymaga kluczy, haseł ani bazy danych - działa od razu po instala
 
 ## Struktura projektu
 
-```
-app.py                  interfejs Streamlit (tylko prezentacja)
-dane/menu.json          menu: kategorie i pozycje z cenami
-dane/zdjecia/           grafiki poglądowe pozycji (<id>.jpg, wygenerowane AI), brak.jpg, pochodzenie w ZRODLA.md
-czarna_tawerna/
-  pieniadze.py          kwoty w groszach (int) i formatowanie „14,50 zł”
-  menu/                 model menu, wczytywanie z JSON, fabryka pozycji
-  zamowienia/           koszyk
-  interfejs/            klasa Tavern (stan sesji kiosku)
-tests/                  testy pytest
-specs/czarna-tawerna/   specyfikacja SDD: requirements.md, design.md, tasks.md
-sprawozdanie/           generator sprawozdania DOCX, narzędzia do zrzutów, zasoby (diagram, zrzuty)
-.streamlit/config.toml  ustawienia Streamlit dla kiosku
-uruchom.ps1             uruchomienie bez aktywacji .venv (Windows)
+```text
+app.py                    interfejs Streamlit (tylko prezentacja)
+czarna_tawerna/           logika aplikacji (bez Streamlita)
+  pieniadze.py            kwoty w groszach (int) i formatowanie „14,50 zł”
+  menu/                   model menu, wczytywanie z JSON, fabryka pozycji
+  zamowienia/             koszyk
+  interfejs/              klasa Tavern (stan sesji kiosku)
+dane/
+  menu.json               menu: kategorie i pozycje z cenami
+  zdjecia/                grafiki pozycji (<id>.jpg), brak.jpg, logo tawerny, crew.png;
+                          pochodzenie grafik w ZRODLA.md
+tests/                    testy pytest
+specs/czarna-tawerna/     specyfikacja SDD: requirements.md, design.md, tasks.md
+sprawozdanie/             generator sprawozdania DOCX, narzędzia do zrzutów, zasoby (diagram, zrzuty)
+.streamlit/config.toml    ustawienia Streamlit dla kiosku
+.devcontainer/            konfiguracja GitHub Codespaces
+requirements.txt          biblioteki aplikacji
+pyproject.toml            metadane projektu i konfiguracja pytest
+setup.cfg                 konfiguracja pycodestyle (PEP 8)
+uruchom.ps1               uruchomienie bez aktywacji .venv (Windows)
 ```
 
-Logika w pakiecie `czarna_tawerna` nie zależy od Streamlita - `app.py` korzysta z niej przez klasę `Tavern`.
+Logika w pakiecie `czarna_tawerna` nie zależy od Streamlita - `app.py` korzysta z niej przez klasę `Tavern`. Zależności między pakietami idą w jedną stronę: `interfejs` → `zamowienia` → `menu` → `pieniadze`.
 
 ## Wzorce projektowe
 
@@ -201,7 +248,23 @@ Projekt prowadzimy metodą Spec-Driven Development. W katalogu `specs/czarna-taw
 
 Najpierw zmieniamy specyfikację, potem kod.
 
-## Sprawozdanie
+## Współpraca
+
+**Konwencje kodu**
+
+- Nazwy klas, metod i funkcji są po angielsku (wymóg etapu 2, PEP 8), np. `Cart`, `load_menu`.
+- Wszystko inne - nazwy pakietów i plików, atrybuty, zmienne, klucze JSON, nazwy testów, komentarze, docstringi i teksty interfejsu - jest po polsku, bez polskich znaków w identyfikatorach (np. `pozycje`, `cena_bazowa`).
+- Kwoty są w groszach (`int`); błędy logiki zgłasza się jako `ValueError` (niedozwolona operacja) lub `KeyError` (brak id).
+- Logika w `czarna_tawerna` nie importuje Streamlita.
+
+**Praca z repozytorium**
+
+1. Przed rozpoczęciem pracy pobierz zmiany: `git pull`.
+2. Nowa funkcja: najpierw specyfikacja w `specs/czarna-tawerna/`, potem kod; wykonane zadanie odhacz w `tasks.md`.
+3. Przed wysłaniem zmian sprawdź, że przechodzą testy (`pytest`) i styl (`pycodestyle czarna_tawerna app.py tests`).
+4. Commit z krótkim opisem po polsku, co i po co zmieniono, potem `git push`. Jeśli push zostanie odrzucony, bo ktoś wysłał zmiany wcześniej: `git pull --rebase`, a potem ponownie `git push`.
+
+## Sprawozdanie i oddawanie
 
 Sprawozdanie generuje skrypt `sprawozdanie/generuj_sprawozdanie.py` (plik wynikowy `sprawozdanie/programowanie2_sprawozdanie.docx`, nadpisywany tylko z opcją `--nadpisz`). Generator potrzebuje dodatkowo biblioteki `python-docx`, której celowo nie ma w `requirements.txt` (to narzędzie zespołu, nie część aplikacji):
 
@@ -210,8 +273,25 @@ pip install python-docx
 python sprawozdanie/generuj_sprawozdanie.py --nadpisz
 ```
 
-Gotowe pliki sprawozdania nie są przechowywane w repozytorium. Skrypty zrzutów ekranu opisuje `sprawozdanie/narzedzia/README.md`.
-
-## Oddawanie
+Gotowe pliki sprawozdania nie są przechowywane w repozytorium. Skrypty zrzutów ekranu opisuje [`sprawozdanie/narzedzia/README.md`](sprawozdanie/narzedzia/README.md).
 
 Od etapu 2 oddaje się archiwum ZIP z kodem i sprawozdaniem - **bez** `.venv/`, `__pycache__/` i `.pytest_cache/`.
+
+## Autorzy
+
+| Osoba | Nr albumu | Rola | Zakres | Wzorce |
+|---|---|---|---|---|
+| Krystian Rutkowski (Szyper) | 167040 | kierownik, interfejs i integracja | `interfejs/`, `app.py` | Observer |
+| Katarzyna Pater (Kwatermistrz) | 167683 | zamówienia | `zamowienia/` | Strategy, Observer |
+| Dariusz Lorenz (Kuk) | 167014 | personalizacja (od kolejnego etapu; w etapie 2 - diagram klas) | `personalizacja/` (w poczekalni) | Decorator |
+| Wiktor Purgał (Nawigator) | 165328 | menu | `menu/` | Fabryka |
+
+## Licencja i prawa
+
+Projekt edukacyjny, przygotowany na zajęcia z Programowania obiektowego II w AHE w Łodzi. **Wszelkie prawa zastrzeżone** przez autorów - kod nie jest udostępniony na wolnej licencji.
+
+Treści osób trzecich:
+
+- **Motto** - fragment tekstu utworu „Czarna tawerna” zespołu Leniwiec, przytoczony jako cytat; prawa należą do autorów utworu.
+- **Grafiki** - logo tawerny, grafiki produktów i obrazek załogi (`crew.png`) wygenerowano modelem AI Nano Banana (Google Gemini); szczegóły w [`dane/zdjecia/ZRODLA.md`](dane/zdjecia/ZRODLA.md). Postacie na `crew.png` są inspirowane grą Among Us (Innersloth) - obrazek służy wyłącznie jako ilustracja w projekcie edukacyjnym.
+- **Biblioteki** - Streamlit, pytest i fpdf2 mają własne licencje open source.
