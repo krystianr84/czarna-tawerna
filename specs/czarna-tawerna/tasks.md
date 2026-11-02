@@ -83,6 +83,7 @@ Instrukcja: `req/etap2.md`. Funkcje etapu (menu, koszyk, fabryka, oddzielenie lo
 ### Dokumentacja
 
 - [x] 8.12 Aktualizacja `design.md`, `README.md` i `CLAUDE.md` po zmianie nazw (diagramy, nazwy klas, status etapu) - Krystian Rutkowski - _N9, N10_
+- [x] 8.12a README: instrukcja instalacji, konfiguracji i uruchomienia dla Windows, Linuksa i macOS; `requirements.txt`: `streamlit>=1.65` (starsze wersje nie mają `alt` w `st.image`); sprawdzone na Pythonie 3.10, 3.11 i 3.14 (Windows) - Krystian Rutkowski - _N1, N9_
 - [ ] 8.13 Poprawki w rozdziale 1 wg uwag prowadzącego do etapu 1 - Krystian Rutkowski - _N11_
 
 ### Sprawozdanie - rozdział 2 „Menu i koszyk”
