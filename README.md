@@ -27,7 +27,6 @@ Aplikacja działa jak kiosk samoobsługowy w tawernie-kawiarni: klient przegląd
 - [Wzorce projektowe](#wzorce-projektowe)
 - [Specyfikacja (Spec-Driven Development)](#specyfikacja-spec-driven-development)
 - [Współpraca](#współpraca)
-- [Sprawozdanie i oddawanie](#sprawozdanie-i-oddawanie)
 - [Autorzy](#autorzy)
 - [Licencja i prawa](#licencja-i-prawa)
 
@@ -262,19 +261,6 @@ Zasady pracy w zespole - konwencje kodu, Spec-Driven Development, testy, praca z
 - przed wysłaniem zmian: `git pull`, `pytest` i `pycodestyle czarna_tawerna app.py tests` bez błędów.
 
 Błędy i zadania zgłaszamy w zakładce **Issues** (szablony „Błąd” i „Zadanie”), a pull requesty mają gotową listę kontrolną. Zasady komunikacji: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), zgłaszanie problemów z bezpieczeństwem: [SECURITY.md](SECURITY.md).
-
-## Sprawozdanie i oddawanie
-
-Sprawozdanie generuje skrypt `sprawozdanie/generuj_sprawozdanie.py` (plik wynikowy `sprawozdanie/programowanie2_sprawozdanie.docx`, nadpisywany tylko z opcją `--nadpisz`). Generator potrzebuje dodatkowo biblioteki `python-docx`, której celowo nie ma w `requirements.txt` (to narzędzie zespołu, nie część aplikacji):
-
-```bash
-pip install python-docx
-python sprawozdanie/generuj_sprawozdanie.py --nadpisz
-```
-
-Gotowe pliki sprawozdania nie są przechowywane w repozytorium. Skrypty zrzutów ekranu opisuje [`sprawozdanie/narzedzia/README.md`](sprawozdanie/narzedzia/README.md).
-
-Od etapu 2 oddaje się archiwum ZIP z kodem i sprawozdaniem - **bez** `.venv/`, `__pycache__/` i `.pytest_cache/`.
 
 ## Autorzy
 
