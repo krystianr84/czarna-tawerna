@@ -13,13 +13,16 @@ Aplikacja działa jak kiosk samoobsługowy w tawernie-kawiarni: klient przegląd
 
 > **Status:** etap 2 z 4 - menu i koszyk.
 
+**Chcesz uruchomić projekt?** Przejdź do sekcji [Uruchomienie z pliku ZIP](#uruchomienie-z-pliku-zip).
+
 ![Kiosk Czarnej Tawerny - menu w kafelkach i koszyk](sprawozdanie/zasoby/zrzut_kiosk_menu_koszyk.png)
 
 ## Spis treści
 
+- [Uruchomienie z pliku ZIP](#uruchomienie-z-pliku-zip)
 - [Funkcje](#funkcje)
 - [Technologia](#technologia)
-- [Instalacja i uruchomienie](#instalacja-i-uruchomienie)
+- [Praca z repozytorium (dla zespołu)](#praca-z-repozytorium-dla-zespołu)
 - [Testy](#testy)
 - [Konfiguracja](#konfiguracja)
 - [Najczęstsze problemy](#najczęstsze-problemy)
@@ -29,6 +32,54 @@ Aplikacja działa jak kiosk samoobsługowy w tawernie-kawiarni: klient przegląd
 - [Współpraca](#współpraca)
 - [Autorzy](#autorzy)
 - [Licencja i prawa](#licencja-i-prawa)
+
+## Uruchomienie z pliku ZIP
+
+Potrzebne są tylko **Python 3.10 lub nowszy** i internet przy pierwszym uruchomieniu. Git i konto GitHub nie są potrzebne.
+
+### Windows 10/11
+
+1. **Zainstaluj Pythona** (jeśli go nie masz): pobierz instalator z [python.org/downloads](https://www.python.org/downloads/), w pierwszym oknie **zaznacz „Add python.exe to PATH”** i kliknij „Install Now”.
+2. **Rozpakuj ZIP:** kliknij plik prawym przyciskiem → **Wyodrębnij wszystkie…**. Nie uruchamiaj niczego z podglądu archiwum.
+3. **Otwórz rozpakowany folder**, w którym leżą `app.py` i `uruchom.bat`.
+4. **Kliknij dwukrotnie `uruchom.bat`.** Jeśli Windows ostrzeże o pliku z internetu, wybierz „Uruchom” albo „Więcej informacji → Uruchom mimo to”.
+5. **Poczekaj.** Za pierwszym razem skrypt tworzy środowisko `.venv` i instaluje biblioteki, co trwa kilka minut. Potem kiosk otworzy się w przeglądarce; jeśli nie, wejdź na **http://localhost:8501**.
+
+Nie zamykaj czarnego okna, dopóki korzystasz z kiosku. Aplikację zatrzymuje **Ctrl+C** albo zamknięcie tego okna. Kolejne uruchomienia to tylko krok 4 i trwają kilka sekund.
+
+**Bez skryptu:** w rozpakowanym folderze kliknij prawym przyciskiem puste miejsce → **Otwórz w terminalu** i wpisz:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python -m streamlit run app.py
+```
+
+Testy:
+
+```powershell
+.venv\Scripts\python -m pytest
+```
+
+### Linux i macOS
+
+1. **Zainstaluj Pythona** (jeśli go nie masz): Ubuntu / Debian / Mint `sudo apt install python3 python3-venv`, Fedora `sudo dnf install python3`, Arch `sudo pacman -S python`, macOS - instalator z [python.org/downloads](https://www.python.org/downloads/macos/).
+2. **Rozpakuj ZIP**, otwórz Terminal i przejdź do folderu, w którym leży `app.py` (np. `cd ~/Downloads/nazwa_folderu`).
+3. **Zainstaluj biblioteki i uruchom kiosk:**
+
+   ```bash
+   python3 -m venv .venv
+   .venv/bin/python -m pip install -r requirements.txt
+   .venv/bin/python -m streamlit run app.py
+   ```
+
+Kiosk otworzy się w przeglądarce (albo wejdź na **http://localhost:8501**). Zatrzymanie: **Ctrl+C**. Następnym razem wystarczy ostatnie polecenie. Testy:
+
+```bash
+.venv/bin/python -m pytest
+```
+
+Coś nie działa? Zob. [Najczęstsze problemy](#najczęstsze-problemy).
 
 ## Funkcje
 
@@ -49,31 +100,11 @@ Aplikacja działa jak kiosk samoobsługowy w tawernie-kawiarni: klient przegląd
 
 Wszystkie biblioteki są w `requirements.txt` i instalują się jednym poleceniem do środowiska wirtualnego `.venv` w folderze projektu - niczego nie instaluje się globalnie poza samym Pythonem i Gitem.
 
-## Instalacja i uruchomienie
+## Praca z repozytorium (dla zespołu)
 
-### Szybki start (Windows)
+Ta część jest dla osób z dostępem do repozytorium na GitHubie. Do uruchomienia projektu z ZIP-a wystarczy sekcja [Uruchomienie z pliku ZIP](#uruchomienie-z-pliku-zip).
 
-1. Zainstaluj Pythona 3.10 lub nowszego ze strony [python.org/downloads](https://www.python.org/downloads/) (zaznacz „Add python.exe to PATH”).
-2. Pobierz projekt ([krok 2](#2-pobranie-projektu)) albo rozpakuj archiwum ZIP ([instrukcja](#uruchomienie-z-pliku-zip-windows)).
-3. Kliknij dwukrotnie **`uruchom.bat`** w folderze projektu (albo wpisz `.\uruchom.bat` w PowerShell).
-
-Skrypt sam tworzy środowisko `.venv`, instaluje biblioteki i uruchamia kiosk w przeglądarce. Pierwsze uruchomienie może potrwać kilka minut i wymaga internetu; kolejne trwają kilka sekund, bo biblioteki są instalowane ponownie tylko po zmianie `requirements.txt`. Aplikację zatrzymuje **Ctrl+C** albo zamknięcie okna. Jeśli coś się nie uda, okno zostaje otwarte z komunikatem błędu.
-
-### Uruchomienie z pliku ZIP (Windows)
-
-Git ani konto GitHub nie są potrzebne - wystarczy Python 3.10 lub nowszy i internet przy pierwszym uruchomieniu.
-
-1. Zapisz plik ZIP z projektem na dysku (np. archiwum `E2_Nazwisko_Imie_numeralbumu.zip` albo pobrane z GitHuba przez **Code → Download ZIP**).
-2. Kliknij plik prawym przyciskiem, wybierz **Wyodrębnij wszystkie…** i wskaż folder. Skryptu nie uruchamia się z podglądu archiwum - najpierw trzeba rozpakować całość.
-3. Otwórz rozpakowany folder, w którym leżą `app.py` i `uruchom.bat`.
-4. Kliknij dwukrotnie **`uruchom.bat`**. Jeśli Windows pokaże ostrzeżenie o pliku z internetu, wybierz **Uruchom** albo **Więcej informacji → Uruchom mimo to**.
-5. Poczekaj na instalację bibliotek - kiosk otworzy się w przeglądarce (albo wejdź na http://localhost:8501).
-
-### Instalacja krok po kroku
-
-Na Linuksie i macOS, a także na Windows bez skryptu, instalacja ma cztery kroki: (1) zainstaluj Pythona i Gita, (2) pobierz projekt, (3) utwórz środowisko i zainstaluj biblioteki, (4) uruchom aplikację. Kroki 1, 3 i 4 różnią się między systemami - wybierz swój. Wszystkie polecenia wpisuje się w terminalu (Windows: **PowerShell**, Linux i macOS: **Terminal**).
-
-Bez instalacji czegokolwiek projekt można też uruchomić w przeglądarce - zob. [GitHub Codespaces](#bez-instalacji-github-codespaces).
+Polecenia wpisuje się w terminalu (Windows: **PowerShell**, Linux i macOS: **Terminal**). Bez instalacji czegokolwiek projekt można też uruchomić w przeglądarce - zob. [GitHub Codespaces](#bez-instalacji-github-codespaces).
 
 ### 1. Python i Git
 
@@ -168,7 +199,7 @@ Streamlit sam otworzy przeglądarkę z kioskiem; jeśli tego nie zrobi, wejdź n
 
 Bez aktywacji środowiska:
 
-- Windows: `uruchom.bat` (zob. [Szybki start](#szybki-start-windows)); dodatkowe argumenty przekazuje do Streamlita, np. `.\uruchom.bat --server.port 8502`,
+- Windows: `uruchom.bat` (sam tworzy `.venv` i instaluje biblioteki); dodatkowe argumenty przekazuje do Streamlita, np. `.\uruchom.bat --server.port 8502`,
 - Windows, gdy biblioteki są już zainstalowane w `.venv`: `.\uruchom.ps1` - skrypt korzysta z Pythona w `.venv` i działa z dowolnego folderu (dodatkowe argumenty przekazuje do Streamlita, np. `.\uruchom.ps1 --server.port 8502`),
 - Linux i macOS: `.venv/bin/python -m streamlit run app.py`.
 
@@ -184,7 +215,7 @@ Codespaces dla prywatnych repozytoriów korzysta z darmowego limitu godzin konta
 
 ## Testy
 
-Przy aktywnym środowisku `.venv`:
+Przy aktywnym środowisku `.venv` (polecenia bez aktywacji są w sekcji [Uruchomienie z pliku ZIP](#uruchomienie-z-pliku-zip)):
 
 ```bash
 pytest                              # wszystkie testy (12)
@@ -219,9 +250,9 @@ Aplikacja nie wymaga kluczy, haseł ani bazy danych - działa od razu po instala
 | `uruchom.bat`: „Nie znaleziono Pythona 3.10 lub nowszego” | zainstaluj Pythona z „Add to PATH” i uruchom skrypt ponownie |
 | `uruchom.bat`: „Środowisko .venv jest uszkodzone…” | usuń folder `.venv` i uruchom skrypt ponownie |
 | „running scripts is disabled” przy aktywacji (Windows) | `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` |
-| `error: externally-managed-environment` przy `pip install` (Linux, macOS) | biblioteki instaluje się tylko w aktywnym `.venv` - wykonaj najpierw `source .venv/bin/activate` |
+| `error: externally-managed-environment` przy `pip install` (Linux, macOS) | biblioteki instaluje się tylko w `.venv` - użyj `.venv/bin/python -m pip install -r requirements.txt` |
 | `No module named venv` / `ensurepip is not available` (Debian, Ubuntu) | `sudo apt install python3-venv` |
-| `streamlit: command not found` | środowisko nie jest aktywne - aktywuj `.venv` (krok 3) albo użyj `python -m streamlit run app.py` |
+| `streamlit: command not found` | środowisko nie jest aktywne - użyj `.venv\Scripts\python -m streamlit run app.py` (Windows) albo `.venv/bin/python -m streamlit run app.py` (Linux, macOS) |
 | „Port 8501 is already in use” | aplikacja już działa w innym terminalu - zatrzymaj ją (Ctrl+C) albo użyj `--server.port 8502` |
 | `TypeError: ... unexpected keyword argument` przy starcie | za stary Streamlit - `pip install -r requirements.txt --upgrade` (wymagany 1.65+) |
 | Git przy `clone` zgłasza brak dostępu | repozytorium jest prywatne - zaakceptuj zaproszenie do repozytorium i zaloguj się do GitHuba |
@@ -241,7 +272,8 @@ dane/
                           pochodzenie grafik w ZRODLA.md
 tests/                    testy pytest
 specs/czarna-tawerna/     specyfikacja SDD: requirements.md, design.md, tasks.md
-sprawozdanie/             generator sprawozdania DOCX, narzędzia do zrzutów, zasoby (diagram, zrzuty)
+sprawozdanie/             generator DOCX, narzędzia i zasoby (w ZIP-ie tylko zrzut kiosku)
+sprawozdanie.pdf          sprawozdanie (tylko w ZIP-ie)
 .streamlit/config.toml    ustawienia Streamlit dla kiosku
 .devcontainer/            konfiguracja GitHub Codespaces
 .github/                  szablony zgłoszeń (Issues) i pull requestów

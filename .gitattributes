@@ -1,0 +1,2 @@
+# skrypt Windows musi mieć CRLF, także w ZIP-ie z GitHuba
+*.bat -text

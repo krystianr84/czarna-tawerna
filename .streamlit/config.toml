@@ -4,3 +4,7 @@ toolbarMode = "minimal"
 
 [browser]
 gatherUsageStats = false
+
+# bez pytania o e-mail przy pierwszym uruchomieniu
+[server]
+showEmailPrompt = false
