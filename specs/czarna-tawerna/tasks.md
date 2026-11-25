@@ -79,6 +79,7 @@ Instrukcja: `req/etap2.md`. Funkcje etapu (menu, koszyk, fabryka, oddzielenie lo
 - [x] 8.11a Ograniczenie kodu do zakresu etapu 2 (decyzja 2026-11-02): rozmiary, dodatki i Decorator, promocje (Strategy), zamówienie ze statusami, tablica statusów (Observer) i panel obsługi przeniesione do `../Projekt_poczekalnia/` (opis w `POCZEKALNIA.md`); w projekcie: `MenuItem` z ceną i abstrakcyjnym `kind()`, `Cart`/`CartItem` z pozycją menu, `Tavern.add_to_cart()`, `app.py` z menu i koszykiem; 22 testy, PEP 8 bez uwag - Krystian Rutkowski - _W1, W4, W9.1-9.3, N6_
 - [x] 8.11b Menu w kafelkach zamiast rozwijanych belek, zdjęcia poglądowe pozycji z Wikimedia Commons (wolne licencje, `dane/zdjecia/ZRODLA.md`) i grafika zastępcza; dostosowany skrypt zrzutu kiosku - Krystian Rutkowski - _W9.1, W9.5, W9.6_
 - [x] 8.11c Grafiki produktów wygenerowane w Nano Banana (Google Gemini) zamiast zdjęć z Wikimedia Commons; `ZRODLA.md`, nowy zrzut kiosku, informacja o pochodzeniu grafik w punkcie 2.5 sprawozdania - Krystian Rutkowski - _W9.5_
+- [x] 8.11d Przycisk „Do koszyka” bez kwoty - interfejs nie liczy cen (zgodnie z punktem 2.3 sprawozdania) - Krystian Rutkowski - _N2, W9.1_
 
 ### Dokumentacja
 
@@ -105,6 +106,7 @@ Instrukcja: `req/etap2.md`. Funkcje etapu (menu, koszyk, fabryka, oddzielenie lo
 ## Do ustalenia po instrukcjach kolejnych etapów
 
 - [x] 7.1 Uzupełnić wymagania i zadania o etap 2
+- [ ] 7.1a Skrypty uruchomieniowe dla Linuksa i macOS (odpowiednik `uruchom.bat`: `.venv`, biblioteki, start aplikacji) wraz z opisem w README - Krystian Rutkowski - _N1, N9_
 - [ ] 7.2 Uzupełnić wymagania i zadania o etap 3
 - [ ] 7.3 Uzupełnić wymagania i zadania o etap 4
 - [ ] 7.4 Decyzja: program lojalnościowy (Karta Załogi) i zestawy

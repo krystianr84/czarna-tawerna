@@ -34,7 +34,7 @@ Aplikacja działa jak kiosk samoobsługowy w tawernie-kawiarni: klient przegląd
 
 - Menu w zakładkach kategorii (5 kategorii, 25 pozycji) wczytywane z pliku `dane/menu.json`.
 - Każda pozycja jako kafelek: grafika, nazwa, opis, rodzaj (napój / danie), oznaczenia (np. „wege”), cena.
-- Dodawanie do koszyka z wyborem ilości (1-20) - przycisk od razu pokazuje kwotę.
+- Dodawanie do koszyka z wyborem ilości (1-20).
 - Koszyk w panelu bocznym: wpisy z wartością, usuwanie pozycji, suma koszyka.
 - Kwoty liczone dokładnie w groszach i wyświetlane w formacie „14,50 zł”.
 - Koszyk przetrwa przeładowania strony w ramach jednej sesji przeglądarki.
@@ -51,7 +51,27 @@ Wszystkie biblioteki są w `requirements.txt` i instalują się jednym polecenie
 
 ## Instalacja i uruchomienie
 
-Instrukcja ma cztery kroki: (1) zainstaluj Pythona i Gita, (2) pobierz projekt, (3) utwórz środowisko i zainstaluj biblioteki, (4) uruchom aplikację. Kroki 1, 3 i 4 różnią się między systemami - wybierz swój. Wszystkie polecenia wpisuje się w terminalu (Windows: **PowerShell**, Linux i macOS: **Terminal**).
+### Szybki start (Windows)
+
+1. Zainstaluj Pythona 3.10 lub nowszego ze strony [python.org/downloads](https://www.python.org/downloads/) (zaznacz „Add python.exe to PATH”).
+2. Pobierz projekt ([krok 2](#2-pobranie-projektu)) albo rozpakuj archiwum ZIP ([instrukcja](#uruchomienie-z-pliku-zip-windows)).
+3. Kliknij dwukrotnie **`uruchom.bat`** w folderze projektu (albo wpisz `.\uruchom.bat` w PowerShell).
+
+Skrypt sam tworzy środowisko `.venv`, instaluje biblioteki i uruchamia kiosk w przeglądarce. Pierwsze uruchomienie może potrwać kilka minut i wymaga internetu; kolejne trwają kilka sekund, bo biblioteki są instalowane ponownie tylko po zmianie `requirements.txt`. Aplikację zatrzymuje **Ctrl+C** albo zamknięcie okna. Jeśli coś się nie uda, okno zostaje otwarte z komunikatem błędu.
+
+### Uruchomienie z pliku ZIP (Windows)
+
+Git ani konto GitHub nie są potrzebne - wystarczy Python 3.10 lub nowszy i internet przy pierwszym uruchomieniu.
+
+1. Zapisz plik ZIP z projektem na dysku (np. archiwum `E2_Nazwisko_Imie_numeralbumu.zip` albo pobrane z GitHuba przez **Code → Download ZIP**).
+2. Kliknij plik prawym przyciskiem, wybierz **Wyodrębnij wszystkie…** i wskaż folder. Skryptu nie uruchamia się z podglądu archiwum - najpierw trzeba rozpakować całość.
+3. Otwórz rozpakowany folder, w którym leżą `app.py` i `uruchom.bat`.
+4. Kliknij dwukrotnie **`uruchom.bat`**. Jeśli Windows pokaże ostrzeżenie o pliku z internetu, wybierz **Uruchom** albo **Więcej informacji → Uruchom mimo to**.
+5. Poczekaj na instalację bibliotek - kiosk otworzy się w przeglądarce (albo wejdź na http://localhost:8501).
+
+### Instalacja krok po kroku
+
+Na Linuksie i macOS, a także na Windows bez skryptu, instalacja ma cztery kroki: (1) zainstaluj Pythona i Gita, (2) pobierz projekt, (3) utwórz środowisko i zainstaluj biblioteki, (4) uruchom aplikację. Kroki 1, 3 i 4 różnią się między systemami - wybierz swój. Wszystkie polecenia wpisuje się w terminalu (Windows: **PowerShell**, Linux i macOS: **Terminal**).
 
 Bez instalacji czegokolwiek projekt można też uruchomić w przeglądarce - zob. [GitHub Codespaces](#bez-instalacji-github-codespaces).
 
@@ -148,7 +168,8 @@ Streamlit sam otworzy przeglądarkę z kioskiem; jeśli tego nie zrobi, wejdź n
 
 Bez aktywacji środowiska:
 
-- Windows: `.\uruchom.ps1` - skrypt korzysta z Pythona w `.venv` i działa z dowolnego folderu (dodatkowe argumenty przekazuje do Streamlita, np. `.\uruchom.ps1 --server.port 8502`),
+- Windows: `uruchom.bat` (zob. [Szybki start](#szybki-start-windows)); dodatkowe argumenty przekazuje do Streamlita, np. `.\uruchom.bat --server.port 8502`,
+- Windows, gdy biblioteki są już zainstalowane w `.venv`: `.\uruchom.ps1` - skrypt korzysta z Pythona w `.venv` i działa z dowolnego folderu (dodatkowe argumenty przekazuje do Streamlita, np. `.\uruchom.ps1 --server.port 8502`),
 - Linux i macOS: `.venv/bin/python -m streamlit run app.py`.
 
 ### Bez instalacji: GitHub Codespaces
@@ -195,6 +216,8 @@ Aplikacja nie wymaga kluczy, haseł ani bazy danych - działa od razu po instala
 | Problem | Rozwiązanie |
 |---|---|
 | `python` / `python3` nie jest rozpoznawany | Python nie jest w PATH - zainstaluj ponownie z „Add to PATH” (Windows) albo użyj `py` / `python3` |
+| `uruchom.bat`: „Nie znaleziono Pythona 3.10 lub nowszego” | zainstaluj Pythona z „Add to PATH” i uruchom skrypt ponownie |
+| `uruchom.bat`: „Środowisko .venv jest uszkodzone…” | usuń folder `.venv` i uruchom skrypt ponownie |
 | „running scripts is disabled” przy aktywacji (Windows) | `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` |
 | `error: externally-managed-environment` przy `pip install` (Linux, macOS) | biblioteki instaluje się tylko w aktywnym `.venv` - wykonaj najpierw `source .venv/bin/activate` |
 | `No module named venv` / `ensurepip is not available` (Debian, Ubuntu) | `sudo apt install python3-venv` |
@@ -229,7 +252,8 @@ LICENSE                   prawa autorskie (wszelkie prawa zastrzeżone)
 requirements.txt          biblioteki aplikacji
 pyproject.toml            metadane projektu i konfiguracja pytest
 setup.cfg                 konfiguracja pycodestyle (PEP 8)
-uruchom.ps1               uruchomienie bez aktywacji .venv (Windows)
+uruchom.bat               uruchomienie dwuklikiem z instalacją bibliotek (Windows)
+uruchom.ps1               uruchomienie z gotowego .venv, bez aktywacji (Windows)
 ```
 
 Logika w pakiecie `czarna_tawerna` nie zależy od Streamlita - `app.py` korzysta z niej przez klasę `Tavern`. Zależności między pakietami idą w jedną stronę: `interfejs` → `zamowienia` → `menu` → `pieniadze`.

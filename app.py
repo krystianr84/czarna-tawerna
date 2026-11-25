@@ -66,8 +66,7 @@ for zakladka, kategoria in zip(zakladki, tawerna.menu.kategorie):
                     ilosc = st.number_input("Ilość", min_value=1, max_value=20, value=1,
                                             key=f"i_{pozycja.id}",
                                             label_visibility="collapsed")
-                etykieta = f"Do koszyka - {format_pln(pozycja.price() * ilosc)}"
-                if st.button(etykieta, key=f"b_{pozycja.id}", width="stretch"):
+                if st.button("Do koszyka", key=f"b_{pozycja.id}", width="stretch"):
                     tawerna.add_to_cart(pozycja.id, ilosc)
                     st.rerun()
 
